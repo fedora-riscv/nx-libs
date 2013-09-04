@@ -2,7 +2,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.21
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -27,9 +27,9 @@ BuildRequires:  libpng-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  zlib-devel
 
-Obsoletes:      nx < %{version}-%{release}
+Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
-Obsoletes:      nx%{?_isa} < %{version}-%{release}
+Obsoletes:      nx%{?_isa} < 3.5.0-19
 Provides:       nx%{?_isa} = %{version}-%{release}
 
 %description
@@ -416,9 +416,9 @@ needed to develop X11 applications that require these.
 %package -n nxagent
 Group:          Applications/System
 Summary:        NX agent
-Obsoletes:      nx < %{version}-%{release}
+Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
-Obsoletes:      nx%{?_isa} < %{version}-%{release}
+Obsoletes:      nx%{?_isa} < 3.5.0-19
 Provides:       nx%{?_isa} = %{version}-%{release}
 
 %description -n nxagent
@@ -452,9 +452,9 @@ This package provides the NX xauth binary.
 %package -n nxproxy
 Group:          Applications/System
 Summary:        NX proxy
-Obsoletes:      nx < %{version}-%{release}
+Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
-Obsoletes:      nx%{?_isa} < %{version}-%{release}
+Obsoletes:      nx%{?_isa} < 3.5.0-19
 Provides:       nx%{?_isa} = %{version}-%{release}
 
 %description -n nxproxy
@@ -885,6 +885,9 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Wed Sep 4 2013 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.21-3
+- Fix nx obsoletes version
+
 * Tue Sep 3 2013 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.21-2
 - Have nxagent and nxproxy also obsolete/provide nx
 
