@@ -10,7 +10,7 @@ diff -up nx-libs-3.5.0.21/nx-X11/config/cf/host.def.bundled nx-libs-3.5.0.21/nx-
  
  #else /* #if !defined(NXZaurusXServer) && !defined(NXiPAQXServer) && !defined(DarwinArchitecture) */
  
-@@ -1023,3 +1023,7 @@ XCOMM $XFree86: xc/config/cf/xf86site.de
+@@ -1023,3 +1023,8 @@ XCOMM $XFree86: xc/config/cf/xf86site.de
  
  #define BuildRman NO
  #define BuildFontEncLib NO
@@ -18,6 +18,7 @@ diff -up nx-libs-3.5.0.21/nx-X11/config/cf/host.def.bundled nx-libs-3.5.0.21/nx-
 +#define BuildXftLibrary NO
 +#define BuildXft1Library NO
 +#define SharedLibFont NO
++#define BuildLoadableXlibI18n NO
 diff -up nx-libs-3.5.0.21/nx-X11/lib/Imakefile.bundled nx-libs-3.5.0.21/nx-X11/lib/Imakefile
 --- nx-libs-3.5.0.21/nx-X11/lib/Imakefile.bundled	2013-08-30 08:18:40.000000000 -0600
 +++ nx-libs-3.5.0.21/nx-X11/lib/Imakefile	2013-08-30 20:42:40.344850909 -0600

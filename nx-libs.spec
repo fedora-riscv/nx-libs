@@ -2,7 +2,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.21
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -591,12 +591,6 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 %files -n libNX_X11
 %{_libdir}/nx/X11/libNX_X11.so.6*
-%{_libdir}/nx/X11/libximcp.so.2
-%{_libdir}/nx/X11/libxlcDef.so.2
-%{_libdir}/nx/X11/libxlcUTF8Load.so.2
-%{_libdir}/nx/X11/libxlibi18n.so.2
-%{_libdir}/nx/X11/libxlocale.so.2
-%{_libdir}/nx/X11/libxomGeneric.so.2
 
 %files -n libNX_X11-devel
 %{_libdir}/nx/X11/libNX_X11.so
@@ -613,12 +607,6 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 %{_includedir}/nx/X11/Xresource.h
 %{_includedir}/nx/X11/Xutil.h
 %{_includedir}/nx/X11/cursorfont.h
-%{_libdir}/nx/X11/libximcp.so
-%{_libdir}/nx/X11/libxlcDef.so
-%{_libdir}/nx/X11/libxlcUTF8Load.so
-%{_libdir}/nx/X11/libxlibi18n.so
-%{_libdir}/nx/X11/libxlocale.so
-%{_libdir}/nx/X11/libxomGeneric.so
 
 %files -n libNX_Xau-devel
 %{_libdir}/nx/X11/libNX_Xau.so
@@ -885,6 +873,9 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Thu Oct 10 2013 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.21-4
+- Do not build/ship unneeded xlib18n libs
+
 * Wed Sep 4 2013 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.21-3
 - Fix nx obsoletes version
 
