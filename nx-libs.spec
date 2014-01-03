@@ -4,7 +4,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.21
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -418,6 +418,8 @@ needed to develop X11 applications that require these.
 %package -n nxagent
 Group:          Applications/System
 Summary:        NX agent
+# For /usr/share/X11/xkb
+Requires:       xkeyboard-config
 Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
 Obsoletes:      nx%{?_isa} < 3.5.0-19
@@ -542,7 +544,11 @@ mkdir -p %{buildroot}%{_sysconfdir}/ld.so.conf.d/
 echo %{_libdir}/nx > %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}-%{_arch}.conf
 echo %{_libdir}/nx/X11 >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}-%{_arch}.conf
 
-#Remove extras, GL, and other unneeded headers
+# Needed for nxagent to find the keymap directory
+mkdir -p %{buildroot}%{_datadir}/X11/xkb
+touch %{buildroot}%{_datadir}/X11/xkb/keymap.dir
+
+# Remove extras, GL, and other unneeded headers
 rm -r %{buildroot}%{_includedir}/nx/{extras,GL}
 rm -r %{buildroot}%{_includedir}/nx/X11/bitmaps
 rm -r %{buildroot}%{_includedir}/nx/X11/extensions/XInput.h
@@ -853,6 +859,7 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 %dir %{_sysconfdir}/nxagent
 %config(noreplace) %{_sysconfdir}/nxagent/keystrokes.cfg
 %{_bindir}/nxagent
+%{_datadir}/X11/xkb/keymap.dir
 %dir %{_libdir}/nx/bin
 %{_libdir}/nx/bin/nxagent
 
@@ -875,6 +882,9 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Fri Jan 3 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.21-5
+- Provide /usr/share/X11/xkb/keymap.dir so nxagent can find keymap dir (bug #1033876)
+
 * Thu Oct 10 2013 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.21-4
 - Do not build/ship unneeded xlib18n libs
 
