@@ -1,4 +1,6 @@
+# _hardened_build not working for EL6, at least define __global_ldflags for now
 %global _hardened_build 1
+%{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
 Version:        3.5.0.22
