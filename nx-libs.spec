@@ -1,8 +1,8 @@
 %global _hardened_build 1
 
 Name:           nx-libs
-Version:        3.5.0.21
-Release:        5%{?dist}
+Version:        3.5.0.22
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -14,8 +14,6 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}-
 # debian/roll-tarballs.sh HEAD server
 # mv _releases_/source/nx-libs/nx-libs-HEAD-full.tar.gz .
 #Source0:       ns-libs-HEAD-full.tar.gz
-# Remove bundled libraries
-Patch0:         nx-libs-bundled.patch
 
 BuildRequires:  autoconf
 BuildRequires:  expat-devel
@@ -231,6 +229,8 @@ various limitations in the core protocol.
 Group:          System Environment/Libraries
 Summary:        Xinerama extension to the NX Protocol
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       libX11%{?_isa}
+Requires:       libXext%{?_isa}
 
 %description -n libNX_Xinerama
 Xinerama is an extension to the X Window System which enables
@@ -481,7 +481,6 @@ information on NX.
 
 %prep
 %setup -q
-%patch0 -p1 -b .bundled
 # Install into /usr
 sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
 # Use rpm optflags
@@ -506,7 +505,6 @@ find -type f -name '*.[hc]' | xargs chmod -x
 # Xcursor - Other code still references files in it
 # Xfont - Statically linked to nxarget, others?
 # Xpm
-rm -r nx-X11/lib/{FS,ICE,SM,Xaw,Xft,Xt,Xmu,Xmuu}
 
 
 %build
@@ -545,6 +543,10 @@ echo %{_libdir}/nx/X11 >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}-%{_arc
 # Needed for nxagent to find the keymap directory
 mkdir -p %{buildroot}%{_datadir}/X11/xkb
 touch %{buildroot}%{_datadir}/X11/xkb/keymap.dir
+
+# Need for Xinerama support
+ln -s -f ../../../../%{_lib}/libX11.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama/libNX_X11.so.6
+ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama/libNX_Xext.so.6
 
 # Remove extras, GL, and other unneeded headers
 rm -r %{buildroot}%{_includedir}/nx/{extras,GL}
@@ -676,6 +678,7 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 %files -n libNX_Xinerama
 %{_libdir}/nx/X11/libNX_Xinerama.so.1*
+%{_libdir}/nx/X11/Xinerama/
 
 %files -n libNX_Xpm-devel
 %{_libdir}/nx/X11/libNX_Xpm.so
@@ -880,6 +883,11 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Sun Jan 5 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.22-1
+- Update to 3.5.0.22
+- Drop bundled patch applied upstream
+- Fix Xinerama support
+
 * Fri Jan 3 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.21-5
 - Provide /usr/share/X11/xkb/keymap.dir so nxagent can find keymap dir (bug #1033876)
 
