@@ -4,7 +4,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.22
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -19,11 +19,15 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}-
 # Fix ppc64 build by undefining pixel macro
 # http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=411
 Patch0:         nx-libs-ppc64.patch
+# Patch imake.c to be able to compile with -Werror-format
+# http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=412
+Patch1:         nx-libs-imake.patch
 
 BuildRequires:  autoconf
 BuildRequires:  expat-devel
 BuildRequires:  fontconfig-devel
 BuildRequires:  freetype-devel
+BuildRequires:  imake
 BuildRequires:  libfontenc-devel
 BuildRequires:  libjpeg-devel
 BuildRequires:  libpng-devel
@@ -487,6 +491,7 @@ information on NX.
 %prep
 %setup -q
 %patch0 -p1 -b .ppc64
+%patch1 -p1 -b .imake
 # Install into /usr
 sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
 # Use rpm optflags
@@ -891,6 +896,9 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Fri Jan 24 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.22-3
+- Add patch to fix imake build
+
 * Fri Jan 24 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.22-2
 - Set compile flags properly on arm and ppc64
 - Add patch to fix ppc64 build
