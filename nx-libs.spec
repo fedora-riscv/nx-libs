@@ -4,7 +4,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.22
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -487,6 +487,8 @@ information on NX.
 sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
 # Use rpm optflags
 sed -i -e 's#-O3#%{optflags}#' nx-X11/config/cf/host.def
+sed -i -e 's#-O3#%{optflags}#' nx-X11/config/cf/linux.cf
+echo "#define DefaultGcc2Ppc64Opt %{optflags}" >> nx-X11/config/cf/host.def
 # Use multilib dirs
 # We're installing binaries into %%{_libdir}/nx/bin rather than %%{_libexedir}/nx
 # becuase upstream expects libraries and binaries in the same directory
@@ -885,6 +887,9 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Fri Jan 24 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.22-2
+- Set compile flags properly on arm and ppc64
+
 * Sun Jan 5 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.22-1
 - Update to 3.5.0.22
 - Drop bundled patch applied upstream
