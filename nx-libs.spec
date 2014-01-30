@@ -23,6 +23,7 @@ Patch0:         nx-libs-ppc64.patch
 # http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=412
 Patch1:         nx-libs-imake.patch
 # Fix -Werror=format-security errors
+# http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=423
 Patch2:		nx-libs-format.patch
 
 BuildRequires:  autoconf
