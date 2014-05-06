@@ -3,8 +3,8 @@
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
-Version:        3.5.0.22
-Release:        3%{?dist}
+Version:        3.5.0.23
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -16,15 +16,9 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}-
 # debian/roll-tarballs.sh HEAD server
 # mv _releases_/source/nx-libs/nx-libs-HEAD-full.tar.gz .
 #Source0:       ns-libs-HEAD-full.tar.gz
-# Fix ppc64 build by undefining pixel macro
-# http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=411
-Patch0:         nx-libs-ppc64.patch
-# Patch imake.c to be able to compile with -Werror-format
-# http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=412
-Patch1:         nx-libs-imake.patch
 # Fix -Werror=format-security errors
 # http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=423
-Patch2:		nx-libs-format.patch
+Patch2:                nx-libs-format.patch
 
 BuildRequires:  autoconf
 BuildRequires:  expat-devel
@@ -495,8 +489,6 @@ information on NX.
 
 %prep
 %setup -q
-%patch0 -p1 -b .ppc64
-%patch1 -p1 -b .imake
 %patch2 -p1 -b .format
 # Install into /usr
 sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
@@ -902,6 +894,10 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Tue May 6 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.23-1
+- Update to 3.5.0.23
+- Drop ppc64 and imake patches applied upstream
+
 * Fri Jan 24 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.22-3
 - Add patch to fix imake build
 - Add patch to fix -Werror=format-security build
