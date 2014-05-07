@@ -3,7 +3,7 @@
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
-Version:        3.5.0.23
+Version:        3.5.0.24
 Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
@@ -16,9 +16,6 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}-
 # debian/roll-tarballs.sh HEAD server
 # mv _releases_/source/nx-libs/nx-libs-HEAD-full.tar.gz .
 #Source0:       ns-libs-HEAD-full.tar.gz
-# Fix -Werror=format-security errors
-# http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=423
-Patch2:                nx-libs-format.patch
 
 BuildRequires:  autoconf
 BuildRequires:  expat-devel
@@ -489,7 +486,6 @@ information on NX.
 
 %prep
 %setup -q
-%patch2 -p1 -b .format
 # Install into /usr
 sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
 # Use rpm optflags
@@ -894,6 +890,10 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Wed May 7 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.24-1
+- Update to 3.5.0.24
+- Drop format patch applied upstream
+
 * Tue May 6 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.23-1
 - Update to 3.5.0.23
 - Drop ppc64 and imake patches applied upstream
