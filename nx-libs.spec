@@ -4,7 +4,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.24
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -16,6 +16,9 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}-
 # debian/roll-tarballs.sh HEAD server
 # mv _releases_/source/nx-libs/nx-libs-HEAD-full.tar.gz .
 #Source0:       ns-libs-HEAD-full.tar.gz
+# Attempt at aarch64 support
+# http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=490
+Patch0:         nx-libs-aarch64.patch
 
 BuildRequires:  autoconf
 BuildRequires:  expat-devel
@@ -486,6 +489,7 @@ information on NX.
 
 %prep
 %setup -q
+%patch0 -p1 -b .aarch64
 # Install into /usr
 sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
 # Use rpm optflags
@@ -890,6 +894,9 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Wed May 7 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.24-2
+- Add patch for aarch64 support attempt
+
 * Wed May 7 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.24-1
 - Update to 3.5.0.24
 - Drop format patch applied upstream
