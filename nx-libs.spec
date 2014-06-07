@@ -4,7 +4,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.24
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -894,6 +894,9 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.5.0.24-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
+
 * Wed May 7 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.24-2
 - Add patch for aarch64 support attempt
 
