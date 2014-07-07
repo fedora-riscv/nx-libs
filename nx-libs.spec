@@ -3,8 +3,8 @@
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
-Version:        3.5.0.24
-Release:        3%{?dist}
+Version:        3.5.0.27
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -16,9 +16,6 @@ Source0:        http://code.x2go.org/releases/source/%{name}/%{name}-%{version}-
 # debian/roll-tarballs.sh HEAD server
 # mv _releases_/source/nx-libs/nx-libs-HEAD-full.tar.gz .
 #Source0:       ns-libs-HEAD-full.tar.gz
-# Attempt at aarch64 support
-# http://bugs.x2go.org/cgi-bin/bugreport.cgi?bug=490
-Patch0:         nx-libs-aarch64.patch
 
 BuildRequires:  autoconf
 BuildRequires:  expat-devel
@@ -489,7 +486,6 @@ information on NX.
 
 %prep
 %setup -q
-%patch0 -p1 -b .aarch64
 # Install into /usr
 sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
 # Use rpm optflags
@@ -894,6 +890,10 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Mon Jul 7 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.27-1
+- Update to 3.5.0.27
+- Drop aarch64 patch applied upstream
+
 * Sat Jun 07 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.5.0.24-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_Mass_Rebuild
 
