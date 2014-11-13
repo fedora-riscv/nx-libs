@@ -3,8 +3,8 @@
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
-Version:        3.5.0.27
-Release:        2%{?dist}
+Version:        3.5.0.28
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -450,7 +450,7 @@ round-trips are nearly reduced to zero.
 
 %package -n nxauth
 Group:          Applications/System
-Summary:        NX xauth
+Summary:        NX Auth
 
 %description -n nxauth
 This package provides the NX xauth binary.
@@ -458,7 +458,7 @@ This package provides the NX xauth binary.
 
 %package -n nxproxy
 Group:          Applications/System
-Summary:        NX proxy
+Summary:        NX Proxy
 Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
 Obsoletes:      nx%{?_isa} < 3.5.0-19
@@ -470,14 +470,14 @@ This package provides the NX proxy (client) binary.
 
 %package -n x2goagent
 Group:          Applications/System
-Summary:        X2go agent
+Summary:        X2Go Agent
 Requires:       nxagent
 Requires:       x2goserver
 
 %description -n x2goagent
-X2go agent functionality has been completely incorporated into
+X2Go agent functionality has been completely incorporated into
 nxagent's code base. If the nxagent binary is executed under the name
-of "x2goagent", the X2go functionalities get activated.
+of "x2goagent", the X2Go functionalities get activated.
 
 The x2goagent package is a wrapper that activates X2Go branding in
 nxagent. Please refer to the nxagent package's description for more
@@ -551,10 +551,6 @@ echo %{_libdir}/nx/X11 >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}-%{_arc
 mkdir -p %{buildroot}%{_datadir}/X11/xkb
 touch %{buildroot}%{_datadir}/X11/xkb/keymap.dir
 
-# Need for Xinerama support
-ln -s -f ../../../../%{_lib}/libX11.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama/libNX_X11.so.6
-ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama/libNX_Xext.so.6
-
 # Remove extras, GL, and other unneeded headers
 rm -r %{buildroot}%{_includedir}/nx/{extras,GL}
 rm -r %{buildroot}%{_includedir}/nx/X11/bitmaps
@@ -562,6 +558,10 @@ rm -r %{buildroot}%{_includedir}/nx/X11/extensions/XInput.h
 rm -r %{buildroot}%{_includedir}/nx/X11/extensions/XK*.h
 rm -r %{buildroot}%{_includedir}/nx/X11/extensions/*Xv*.h
 rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
+
+# Needed for Xinerama support
+ln -s -f ../../../../%{_lib}/libX11.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama/libNX_X11.so.6
+ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama/libNX_Xext.so.6
 
 
 %post -p /sbin/ldconfig
@@ -602,9 +602,11 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 %doc nx-X11/{COPYING,LICENSE,README}
 %config(noreplace) %{_sysconfdir}/ld.so.conf.d/%{name}-%{_arch}.conf
 %dir %{_libdir}/nx
+%dir %{_datadir}/nx
 %{_datadir}/nx/SecurityPolicy
 
 %files -n libNX_X11
+%dir %{_libdir}/nx/X11
 %{_libdir}/nx/X11/libNX_X11.so.6*
 
 %files -n libNX_X11-devel
@@ -890,6 +892,11 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 
 
 %changelog
+* Thu Nov 13 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.28-1
+- Update to 3.5.0.28
+- Fix unowned directories
+- Minor cleanup
+
 * Sun Aug 17 2014 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 3.5.0.27-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_21_22_Mass_Rebuild
 
