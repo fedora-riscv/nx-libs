@@ -3,7 +3,7 @@
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
-Version:        3.5.0.28
+Version:        3.5.0.29
 Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
@@ -533,14 +533,14 @@ make install \
         INSTALL_PROGRAM="install -pm0755"
 
 # Remove static libs
-rm %{buildroot}%{_libdir}/nx/*.a
+rm %{buildroot}%{_libdir}/*.a
 
 # Make sure x2goagent is linked relative and on 64-bit
 mkdir -p %{buildroot}%{_libdir}/x2go/bin
 ln -sf ../../nx/bin/nxagent %{buildroot}%{_libdir}/x2go/bin/x2goagent
 
 # Fix permissions on shared libraries
-chmod 755  %{buildroot}%{_libdir}/nx/{,X11/}lib*.so*
+chmod 755  %{buildroot}%{_libdir}/{,nx/}lib*.so*
 
 # Linker
 mkdir -p %{buildroot}%{_sysconfdir}/ld.so.conf.d/
@@ -552,7 +552,7 @@ mkdir -p %{buildroot}%{_datadir}/X11/xkb
 touch %{buildroot}%{_datadir}/X11/xkb/keymap.dir
 
 # Remove extras, GL, and other unneeded headers
-rm -r %{buildroot}%{_includedir}/nx/{extras,GL}
+rm -r %{buildroot}%{_includedir}/nx/GL
 rm -r %{buildroot}%{_includedir}/nx/X11/bitmaps
 rm -r %{buildroot}%{_includedir}/nx/X11/extensions/XInput.h
 rm -r %{buildroot}%{_includedir}/nx/X11/extensions/XK*.h
@@ -603,14 +603,14 @@ ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama
 %config(noreplace) %{_sysconfdir}/ld.so.conf.d/%{name}-%{_arch}.conf
 %dir %{_libdir}/nx
 %dir %{_datadir}/nx
+%{_datadir}/nx/rgb
 %{_datadir}/nx/SecurityPolicy
 
 %files -n libNX_X11
-%dir %{_libdir}/nx/X11
-%{_libdir}/nx/X11/libNX_X11.so.6*
+%{_libdir}/nx/libNX_X11.so.6*
 
 %files -n libNX_X11-devel
-%{_libdir}/nx/X11/libNX_X11.so
+%{_libdir}/nx/libNX_X11.so
 %dir %{_includedir}/nx
 %dir %{_includedir}/nx/X11
 %{_includedir}/nx/X11/ImUtil.h
@@ -626,27 +626,27 @@ ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama
 %{_includedir}/nx/X11/cursorfont.h
 
 %files -n libNX_Xau-devel
-%{_libdir}/nx/X11/libNX_Xau.so
+%{_libdir}/nx/libNX_Xau.so
 %{_includedir}/nx/X11/Xauth.h
 
 %files -n libNX_Xau
-%{_libdir}/nx/X11/libNX_Xau.so.6*
+%{_libdir}/nx/libNX_Xau.so.6*
 
 %files -n libNX_Xcomposite
-%{_libdir}/nx/X11/libNX_Xcomposite.so.1*
+%{_libdir}/nx/libNX_Xcomposite.so.1*
 
 %files -n libNX_Xdamage
-%{_libdir}/nx/X11/libNX_Xdamage.so.1*
+%{_libdir}/nx/libNX_Xdamage.so.1*
 
 %files -n libNX_Xdmcp-devel
-%{_libdir}/nx/X11/libNX_Xdmcp.so
+%{_libdir}/nx/libNX_Xdmcp.so
 %{_includedir}/nx/X11/Xdmcp.h
 
 %files -n libNX_Xdmcp
-%{_libdir}/nx/X11/libNX_Xdmcp.so.6*
+%{_libdir}/nx/libNX_Xdmcp.so.6*
 
 %files -n libNX_Xext-devel
-%{_libdir}/nx/X11/libNX_Xext.so
+%{_libdir}/nx/libNX_Xext.so
 %dir %{_includedir}/nx/X11/extensions
 %{_includedir}/nx/X11/extensions/MITMisc.h
 %{_includedir}/nx/X11/extensions/XEVI.h
@@ -676,41 +676,41 @@ ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama
 %{_includedir}/nx/X11/extensions/xteststr.h
 
 %files -n libNX_Xext
-%{_libdir}/nx/X11/libNX_Xext.so.6*
+%{_libdir}/nx/libNX_Xext.so.6*
 
 %files -n libNX_Xfixes-devel
-%{_libdir}/nx/X11/libNX_Xfixes.so
+%{_libdir}/nx/libNX_Xfixes.so
 %{_includedir}/nx/X11/extensions/Xfixes.h
 
 %files -n libNX_Xfixes
-%{_libdir}/nx/X11/libNX_Xfixes.so.3*
+%{_libdir}/nx/libNX_Xfixes.so.3*
 
 %files -n libNX_Xinerama
-%{_libdir}/nx/X11/libNX_Xinerama.so.1*
+%{_libdir}/nx/libNX_Xinerama.so.1*
 %{_libdir}/nx/X11/Xinerama/
 
 %files -n libNX_Xpm-devel
-%{_libdir}/nx/X11/libNX_Xpm.so
+%{_libdir}/nx/libNX_Xpm.so
 %{_includedir}/nx/X11/xpm.h
 
 %files -n libNX_Xpm
-%{_libdir}/nx/X11/libNX_Xpm.so.4*
+%{_libdir}/nx/libNX_Xpm.so.4*
 
 %files -n libNX_Xrandr
-%{_libdir}/nx/X11/libNX_Xrandr.so.2*
+%{_libdir}/nx/libNX_Xrandr.so.2*
 
 %files -n libNX_Xrender-devel
-%{_libdir}/nx/X11/libNX_Xrender.so
+%{_libdir}/nx/libNX_Xrender.so
 %{_includedir}/nx/X11/extensions/Xrender.h
 
 %files -n libNX_Xrender
-%{_libdir}/nx/X11/libNX_Xrender.so.1*
+%{_libdir}/nx/libNX_Xrender.so.1*
 
 %files -n libNX_Xtst
-%{_libdir}/nx/X11/libNX_Xtst.so.6*
+%{_libdir}/nx/libNX_Xtst.so.6*
 
 %files -n libXcomp-devel
-%_libdir/nx/libXcomp.so
+%_libdir/libXcomp.so
 %{_includedir}/nx/MD5.h
 %{_includedir}/nx/NX.h
 %{_includedir}/nx/NXalert.h
@@ -722,19 +722,19 @@ ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama
 
 %files -n libXcomp
 %doc nxcomp/{COPYING,LICENSE,README}
-%_libdir/nx/libXcomp.so.3*
+%_libdir/libXcomp.so.3*
 
 %files -n libXcompext-devel
-%_libdir/nx/libXcompext.so
+%_libdir/libXcompext.so
 %{_includedir}/nx/NXlib.h
 %{_includedir}/nx/NXlibint.h
 
 %files -n libXcompext
 %doc nxcompext/{COPYING,LICENSE,README}
-%_libdir/nx/libXcompext.so.3*
+%_libdir/libXcompext.so.3*
 
 %files -n libXcompshad-devel
-%_libdir/nx/libXcompshad.so
+%_libdir/libXcompshad.so
 %{_includedir}/nx/Core.h
 %{_includedir}/nx/Input.h
 %{_includedir}/nx/Logger.h
@@ -749,14 +749,14 @@ ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama
 
 %files -n libXcompshad
 %doc nxcompshad/{CHANGELOG,COPYING,LICENSE}
-%_libdir/nx/libXcompshad.so.3*
+%_libdir/libXcompshad.so.3*
 
 %files devel
-%{_libdir}/nx/X11/libNX_Xcomposite.so
-%{_libdir}/nx/X11/libNX_Xdamage.so
-%{_libdir}/nx/X11/libNX_Xinerama.so
-%{_libdir}/nx/X11/libNX_Xrandr.so
-%{_libdir}/nx/X11/libNX_Xtst.so
+%{_libdir}/nx/libNX_Xcomposite.so
+%{_libdir}/nx/libNX_Xdamage.so
+%{_libdir}/nx/libNX_Xinerama.so
+%{_libdir}/nx/libNX_Xrandr.so
+%{_libdir}/nx/libNX_Xtst.so
 %{_includedir}/nx/X11/X10.h
 %dir %{_includedir}/nx/X11/extensions
 %{_includedir}/nx/X11/extensions/XRes.h
@@ -868,30 +868,43 @@ ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama
 %files -n nxagent
 %dir %{_sysconfdir}/nxagent
 %config(noreplace) %{_sysconfdir}/nxagent/keystrokes.cfg
+%config(noreplace) %{_sysconfdir}/nxagent/nxagent.keyboard
+%config(noreplace) %{_sysconfdir}/nxagent/rgb
 %{_bindir}/nxagent
 %{_datadir}/X11/xkb/keymap.dir
 %dir %{_libdir}/nx/bin
 %{_libdir}/nx/bin/nxagent
+%{_datadir}/pixmaps/nxagent.xpm
+%{_mandir}/man1/nxagent.1*
 
 %files -n nxauth
 %{_bindir}/nxauth
 %dir %{_libdir}/nx/bin
 %{_libdir}/nx/bin/nxauth
+%{_mandir}/man1/nxauth.1*
 
 %files -n nxproxy
 %{_bindir}/nxproxy
+%dir %{_libdir}/nx/bin
+%{_libdir}/nx/bin/nxproxy
 %{_mandir}/man1/nxproxy.1*
 
 %files -n x2goagent
 #%%{_sysconfdir}/x2go is owned by x2goserver, which this requires
 %config(noreplace) %{_sysconfdir}/x2go/keystrokes.cfg
+%config(noreplace) %{_sysconfdir}/x2go/x2goagent.keyboard
+%config(noreplace) %{_sysconfdir}/x2go/rgb
 %{_bindir}/x2goagent
 %{_libdir}/x2go/bin/x2goagent
 %{_datadir}/pixmaps/x2go.xpm
 %{_datadir}/x2go/
+%{_mandir}/man1/x2goagent.1*
 
 
 %changelog
+* Fri Mar 13 2015 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.29-1
+- Update to 3.5.0.29
+
 * Thu Nov 13 2014 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.28-1
 - Update to 3.5.0.28
 - Fix unowned directories
