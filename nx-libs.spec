@@ -3,7 +3,7 @@
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
-Version:        3.5.0.29
+Version:        3.5.0.31
 Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
@@ -890,7 +890,7 @@ ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama
 %{_mandir}/man1/nxproxy.1*
 
 %files -n x2goagent
-#%%{_sysconfdir}/x2go is owned by x2goserver, which this requires
+%dir %{_sysconfdir}/x2go
 %config(noreplace) %{_sysconfdir}/x2go/keystrokes.cfg
 %config(noreplace) %{_sysconfdir}/x2go/x2goagent.keyboard
 %config(noreplace) %{_sysconfdir}/x2go/rgb
@@ -902,6 +902,10 @@ ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama
 
 
 %changelog
+* Mon Apr 27 2015 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.31-1
+- Update to 3.5.0.31
+- Own /etc/x2go to ensure proper cleanup
+
 * Fri Mar 13 2015 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.29-1
 - Update to 3.5.0.29
 
