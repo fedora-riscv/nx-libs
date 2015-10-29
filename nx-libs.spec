@@ -4,7 +4,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.32
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -562,7 +562,7 @@ rm -r %{buildroot}%{_includedir}/nx/X11/Xtrans
 # Needed for Xinerama support
 ln -s -f ../../../../%{_lib}/libX11.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama/libNX_X11.so.6
 ln -s -f ../../../../%{_lib}/libXext.so.6 %{buildroot}%{_libdir}/nx/X11/Xinerama/libNX_Xext.so.6
-ln -s -f ../../../../%{_lib}/libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXinerama.so.1
+ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXinerama.so.1
 
 
 %post -p /sbin/ldconfig
@@ -903,6 +903,9 @@ ln -s -f ../../../../%{_lib}/libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/X
 
 
 %changelog
+* Thu Oct 29 2015 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.32-3
+- Fix libXinerama symlink (bug #1256724)
+
 * Tue Aug 25 2015 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.32-2
 - Make libXinerama symlink (bug #1256724)
 
