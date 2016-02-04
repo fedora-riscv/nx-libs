@@ -4,7 +4,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.32
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -903,6 +903,9 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 
 
 %changelog
+* Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.0.32-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
+
 * Thu Oct 29 2015 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.32-3
 - Fix libXinerama symlink (bug #1256724)
 
