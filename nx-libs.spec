@@ -4,7 +4,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.32
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -545,7 +545,6 @@ chmod 755  %{buildroot}%{_libdir}/{,nx/}lib*.so*
 # Linker
 mkdir -p %{buildroot}%{_sysconfdir}/ld.so.conf.d/
 echo %{_libdir}/nx > %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}-%{_arch}.conf
-echo %{_libdir}/nx/X11 >> %{buildroot}%{_sysconfdir}/ld.so.conf.d/%{name}-%{_arch}.conf
 
 # Needed for nxagent to find the keymap directory
 mkdir -p %{buildroot}%{_datadir}/X11/xkb
@@ -903,6 +902,9 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 
 
 %changelog
+* Sun Dec 18 2016 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.32-5
+- Drop old path from ld.so.conf file (bug #1405818)
+
 * Thu Feb 04 2016 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.0.32-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_24_Mass_Rebuild
 
