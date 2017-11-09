@@ -3,8 +3,8 @@
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
-Version:        3.5.0.32
-Release:        8%{?dist}
+Version:        3.5.0.33
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -687,7 +687,6 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 
 %files -n libNX_Xinerama
 %{_libdir}/nx/libNX_Xinerama.so.1*
-%{_libdir}/nx/X11/Xinerama/
 
 %files -n libNX_Xpm-devel
 %{_libdir}/nx/libNX_Xpm.so
@@ -874,6 +873,7 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 %{_datadir}/X11/xkb/keymap.dir
 %dir %{_libdir}/nx/bin
 %{_libdir}/nx/bin/nxagent
+%{_libdir}/nx/X11/Xinerama/
 %{_datadir}/pixmaps/nxagent.xpm
 %{_mandir}/man1/nxagent.1*
 
@@ -893,6 +893,7 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 %dir %{_sysconfdir}/x2go
 %config(noreplace) %{_sysconfdir}/x2go/keystrokes.cfg
 %config(noreplace) %{_sysconfdir}/x2go/x2goagent.keyboard
+%config(noreplace) %{_sysconfdir}/x2go/x2goagent.options
 %config(noreplace) %{_sysconfdir}/x2go/rgb
 %{_bindir}/x2goagent
 %{_libdir}/x2go/bin/x2goagent
@@ -902,6 +903,9 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 
 
 %changelog
+* Wed Nov 8 2017 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.33-1
+- Update to 3.5.0.33
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.0.32-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
