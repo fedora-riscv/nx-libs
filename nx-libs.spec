@@ -1,10 +1,19 @@
 # _hardened_build not working for EL6, at least define __global_ldflags for now
 %global _hardened_build 1
+%ifarch ppc64le
+%if 0%{?el7}
+# Works around https://bugs.centos.org/view.php?id=13779 / https://bugzilla.redhat.com/show_bug.cgi?id=1489712
+# Compilation failure on PPC64LE due to a compiler bug.
+# REMEMBER TO REMOVE ONCE DOWNSTREAM FIXES THE ISSUE!
+%global __global_cflags %{__global_cflags} -mno-vsx
+%global __global_cxxflags %{__global_cxxflags} -mno-vsx
+%endif
+%endif
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
 
 Name:           nx-libs
 Version:        3.5.0.33
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -520,7 +529,10 @@ cat >"my_configure" <<'EOF'
 EOF
 chmod a+x my_configure;
 export SHLIBGLOBALSFLAGS="%{__global_ldflags}"
-make %{?_smp_mflags} CONFIGURE="$PWD/my_configure" USRLIBDIR=%{_libdir}/nx SHLIBDIR=%{_libdir}/nx
+export LOCAL_LDFLAGS="%{__global_ldflags}"
+export CDEBUGFLAGS="%{?__global_cppflags} %{?__global_cflags}"
+make %{?_smp_mflags} CONFIGURE="$PWD/my_configure" USRLIBDIR=%{_libdir}/nx SHLIBDIR=%{_libdir}/nx \
+     CDEBUGFLAGS="${CDEBUGFLAGS}" LOCAL_LDFLAGS="${LOCAL_LDFLAGS}" SHLIBGLOBALSFLAGS="${SHLIBGLOBALSFLAGS}"
 
 
 %install
@@ -903,6 +915,10 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 
 
 %changelog
+* Fri Nov 10 2017 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.33-2
+- Work around compiler bug on epel7 ppc64le
+- Improve compiler flag handling
+
 * Wed Nov 8 2017 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.33-1
 - Update to 3.5.0.33
 
