@@ -34,6 +34,7 @@ BuildRequires:  imake
 BuildRequires:  libfontenc-devel
 BuildRequires:  libjpeg-devel
 BuildRequires:  libpng-devel
+BuildRequires:  libtirpc-devel
 BuildRequires:  libxml2-devel
 # For imake
 BuildRequires:  xorg-x11-proto-devel
@@ -525,9 +526,9 @@ cat >"my_configure" <<'EOF'
 %configure
 EOF
 chmod a+x my_configure;
-export SHLIBGLOBALSFLAGS="%{__global_ldflags}"
-export LOCAL_LDFLAGS="%{__global_ldflags}"
-export CDEBUGFLAGS="%{?__global_cppflags} %{?__global_cflags}"
+export SHLIBGLOBALSFLAGS="%{__global_ldflags} -ltirpc"
+export LOCAL_LDFLAGS="%{__global_ldflags} -ltirpc"
+export CDEBUGFLAGS="%{?__global_cppflags} %{?__global_cflags} -I/usr/include/tirpc"
 make %{?_smp_mflags} CONFIGURE="$PWD/my_configure" USRLIBDIR=%{_libdir}/nx SHLIBDIR=%{_libdir}/nx \
      CDEBUGFLAGS="${CDEBUGFLAGS}" LOCAL_LDFLAGS="${LOCAL_LDFLAGS}" SHLIBGLOBALSFLAGS="${SHLIBGLOBALSFLAGS}"
 
@@ -914,6 +915,7 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 %changelog
 * Mon Jan 22 2018 Orion Poplawski <orion@nwra.com> - 3.5.0.33-3
 - Remove useless obsoletes on provided name (bug #1537214)
+- Use libtripc
 
 * Fri Nov 10 2017 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.33-2
 - Work around compiler bug on epel7 ppc64le
