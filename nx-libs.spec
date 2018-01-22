@@ -13,7 +13,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.33
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -41,7 +41,6 @@ BuildRequires:  zlib-devel
 
 Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
-Obsoletes:      nx%{?_isa} < 3.5.0-19
 Provides:       nx%{?_isa} = %{version}-%{release}
 
 %description
@@ -434,7 +433,6 @@ Summary:        NX agent
 Requires:       xkeyboard-config
 Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
-Obsoletes:      nx%{?_isa} < 3.5.0-19
 Provides:       nx%{?_isa} = %{version}-%{release}
 
 %description -n nxagent
@@ -470,7 +468,6 @@ Group:          Applications/System
 Summary:        NX Proxy
 Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
-Obsoletes:      nx%{?_isa} < 3.5.0-19
 Provides:       nx%{?_isa} = %{version}-%{release}
 
 %description -n nxproxy
@@ -915,6 +912,9 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 
 
 %changelog
+* Mon Jan 22 2018 Orion Poplawski <orion@nwra.com> - 3.5.0.33-3
+- Remove useless obsoletes on provided name (bug #1537214)
+
 * Fri Nov 10 2017 Orion Poplawski <orion@cora.nwra.com> - 3.5.0.33-2
 - Work around compiler bug on epel7 ppc64le
 - Improve compiler flag handling
