@@ -13,7 +13,7 @@
 
 Name:           nx-libs
 Version:        3.5.0.33
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -913,6 +913,9 @@ ln -s -f ../../libNX_Xinerama.so.1 %{buildroot}%{_libdir}/nx/X11/Xinerama/libXin
 
 
 %changelog
+* Thu Feb 08 2018 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.0.33-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_28_Mass_Rebuild
+
 * Mon Jan 22 2018 Orion Poplawski <orion@nwra.com> - 3.5.0.33-3
 - Remove useless obsoletes on provided name (bug #1537214)
 - Use libtripc
