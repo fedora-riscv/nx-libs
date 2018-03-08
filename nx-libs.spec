@@ -10,8 +10,8 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.14
-Release:        2%{?dist}
+Version:        3.5.99.15
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -458,6 +458,9 @@ rm %{buildroot}%{_libdir}/*.la
 
 
 %changelog
+* Thu Mar 8 2018 Orion Poplawski <orion@nwra.com> - 3.5.99.15-1
+- Update to 3.5.99.15
+
 * Wed Mar 07 2018 Adam Williamson <awilliam@redhat.com> - 3.5.99.14-2
 - Rebuild to fix GCC 8 mis-compilation
   See https://da.gd/YJVwk ("GCC 8 ABI change on x86_64")
