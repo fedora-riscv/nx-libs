@@ -10,7 +10,7 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.15
+Version:        3.5.99.16
 Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
@@ -458,6 +458,9 @@ rm %{buildroot}%{_libdir}/*.la
 
 
 %changelog
+* Fri Apr 6 2018 Orion Poplawski <orion@nwra.com> - 3.5.99.16-1
+- Update to 3.5.99.16
+
 * Thu Mar 8 2018 Orion Poplawski <orion@nwra.com> - 3.5.99.15-1
 - Update to 3.5.99.15
 
