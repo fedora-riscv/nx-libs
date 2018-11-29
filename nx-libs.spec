@@ -10,8 +10,8 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.16
-Release:        2%{?dist}
+Version:        3.5.99.17
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 Group:          System Environment/Libraries
@@ -270,12 +270,11 @@ chmod a+x my_configure;
 export SHLIBGLOBALSFLAGS="%{__global_ldflags} -ltirpc"
 export LOCAL_LDFLAGS="%{__global_ldflags} -ltirpc"
 export CDEBUGFLAGS="%{optflags} -I/usr/include/tirpc"
-make %{?_smp_mflags} CONFIGURE="$PWD/my_configure" LIBDIR=%{_libdir} CDEBUGFLAGS="${CDEBUGFLAGS}" LOCAL_LDFLAGS="${LOCAL_LDFLAGS}" SHLIBGLOBALSFLAGS="${SHLIBGLOBALSFLAGS}"
+%make_build CONFIGURE="$PWD/my_configure" LIBDIR=%{_libdir} CDEBUGFLAGS="${CDEBUGFLAGS}" LOCAL_LDFLAGS="${LOCAL_LDFLAGS}" SHLIBGLOBALSFLAGS="${SHLIBGLOBALSFLAGS}"
 
 
 %install
-make install \
-        DESTDIR=%{buildroot} \
+%make_install \
         PREFIX=%{_prefix} \
         LIBDIR=%{_libdir} SHLIBDIR=%{_libdir} \
         INSTALL_DIR="install -dm0755" \
@@ -435,7 +434,6 @@ rm %{buildroot}%{_libdir}/*.la
 %doc doc/nxagent/README.keystrokes
 %dir %{_sysconfdir}/nxagent
 %config(noreplace) %{_sysconfdir}/nxagent/keystrokes.cfg
-%config(noreplace) %{_sysconfdir}/nxagent/nxagent.keyboard
 %{_bindir}/nxagent
 %dir %{_libdir}/nx
 %dir %{_libdir}/nx/bin
@@ -458,6 +456,9 @@ rm %{buildroot}%{_libdir}/*.la
 
 
 %changelog
+* Wed Nov 28 2018 Orion Poplawski <orion@nwra.com> - 3.5.99.17-1
+- Update to 3.5.99.17
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.16-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
 
