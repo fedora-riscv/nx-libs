@@ -268,9 +268,9 @@ EOF
 chmod a+x my_configure;
 # _hardened_build not working for EL6, at least define __global_ldflags for now
 %{!?__global_ldflags: %global __global_ldflags -Wl,-z,relro -Wl,-z,now}
-export SHLIBGLOBALSFLAGS="%{__global_ldflags} -ltirpc"
-export LOCAL_LDFLAGS="%{__global_ldflags} -ltirpc"
-export CDEBUGFLAGS="%{optflags} -I/usr/include/tirpc"
+export SHLIBGLOBALSFLAGS="%{__global_ldflags}"
+export LOCAL_LDFLAGS="%{__global_ldflags}"
+export CDEBUGFLAGS="%{optflags}"
 %make_build CONFIGURE="$PWD/my_configure" LIBDIR=%{_libdir} CDEBUGFLAGS="${CDEBUGFLAGS}" LOCAL_LDFLAGS="${LOCAL_LDFLAGS}" SHLIBGLOBALSFLAGS="${SHLIBGLOBALSFLAGS}"
 
 
