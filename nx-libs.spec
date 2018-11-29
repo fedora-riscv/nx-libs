@@ -25,6 +25,7 @@ BuildRequires:  libtool
 BuildRequires:  gcc-c++
 BuildRequires:  expat-devel
 BuildRequires:  imake
+BuildRequires:  quilt
 BuildRequires:  libjpeg-devel
 BuildRequires:  libpng-devel
 BuildRequires:  libtirpc-devel
