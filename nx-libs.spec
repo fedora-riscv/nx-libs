@@ -302,15 +302,10 @@ rm -r %{buildroot}%{_includedir}/nx-X11/Xtrans
 rm %{buildroot}%{_libdir}/*.la
 
 
-%post -p /sbin/ldconfig
-%post -n libNX_X11 -p /sbin/ldconfig
-%post -n libXcomp -p /sbin/ldconfig
-%post -n libXcompshad -p /sbin/ldconfig
-
-%postun -p /sbin/ldconfig
-%postun -n libNX_X11 -p /sbin/ldconfig
-%postun -n libXcomp -p /sbin/ldconfig
-%postun -n libXcompshad -p /sbin/ldconfig
+%ldconfig_scriptlets
+%ldconfig_scriptlets -n libNX_X11
+%ldconfig_scriptlets -n libXcomp
+%ldconfig_scriptlets -n libXcompshad
 
 %files
 %license COPYING LICENSE LICENSE.nxcomp
