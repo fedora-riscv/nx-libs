@@ -14,7 +14,6 @@ Version:        3.5.99.17
 Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
-Group:          System Environment/Libraries
 License:        GPLv2+
 URL:            https://github.com/ArcticaProject/nx-libs
 Source0:        https://github.com/ArcticaProject/nx-libs/archive/%{version}/%{name}-%{version}.tar.gz
@@ -67,7 +66,6 @@ applications over a network, especially a slow one.
 
 
 %package -n libNX_X11
-Group:          System Environment/Libraries
 Summary:        Core NX protocol client library
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
@@ -87,7 +85,6 @@ stream connection.
 
 
 %package -n libNX_X11-devel
-Group:          Development/Libraries
 Summary:        Development files for the Core NX protocol library
 Requires:       libNX_X11%{?_isa} = %{version}-%{release}
 Requires:       nx-proto-devel%{?_isa} = %{version}-%{release}
@@ -111,7 +108,6 @@ needed to develop applications that require these.
 
 
 %package -n libXcomp-devel
-Group:          Development/Libraries
 Summary:        Development files for the NX differential compression library
 Requires:       libXcomp%{?_isa} = %{version}-%{release}
 Requires:       nx-proto-devel = %{version}-%{release}
@@ -126,7 +122,6 @@ The NX differential compression library's development files.
 
 
 %package -n libXcomp
-Group:          System Environment/Libraries
 Summary:        NX differential compression library
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
@@ -139,7 +134,6 @@ This package contains the NX differential compression library for X11.
 
 
 %package -n libXcompshad-devel
-Group:          Development/Libraries
 Summary:        Development files for the NX session shadowing library
 Requires:       libXcompshad%{?_isa} = %{version}-%{release}
 Requires:       libNX_X11-devel%{?_isa} = %{version}-%{release}
@@ -155,7 +149,6 @@ The NX session shadowing library's development files.
 
 
 %package -n libXcompshad
-Group:          System Environment/Libraries
 Summary:        NX session shadowing Library
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 
@@ -168,7 +161,6 @@ This package provides the session shadowing library.
 
 
 %package devel
-Group:          Development/Libraries
 Summary:        Include files and libraries for NX development
 Requires:       libNX_X11-devel%{?_isa} = %{version}-%{release}
 Requires:       nx-proto-devel%{?_isa} = %{version}-%{release}
@@ -190,7 +182,6 @@ needed to develop nx-X11 applications that require these.
 
 
 %package -n nx-proto-devel
-Group:          Development/Libraries
 Summary:        Include files for NX development
 
 %description -n nx-proto-devel
@@ -199,7 +190,6 @@ for the nx_X11 wire protocol.
 
 
 %package -n nxagent
-Group:          Applications/System
 Summary:        NX Agent
 # For /usr/share/X11/xkb
 %if 0%{?fedora}
@@ -235,7 +225,6 @@ round-trips are nearly reduced to zero.
 
 
 %package -n nxproxy
-Group:          Applications/System
 Summary:        NX Proxy
 Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
