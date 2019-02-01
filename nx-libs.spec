@@ -11,7 +11,7 @@
 
 Name:           nx-libs
 Version:        3.5.99.17
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -443,6 +443,9 @@ rm %{buildroot}%{_libdir}/*.la
 
 
 %changelog
+* Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.17-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Wed Nov 28 2018 Orion Poplawski <orion@nwra.com> - 3.5.99.17-1
 - Update to 3.5.99.17
 
