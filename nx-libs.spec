@@ -10,8 +10,8 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.17
-Release:        2%{?dist}
+Version:        3.5.99.20
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -42,6 +42,7 @@ BuildRequires:  pixman-devel
 # For imake
 BuildRequires:  xorg-x11-proto-devel
 BuildRequires:  zlib-devel
+BuildRequires:  /usr/bin/pathfix.py
 
 Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
@@ -290,6 +291,12 @@ rm -r %{buildroot}%{_includedir}/nx-X11/Xtrans
 #Remove our shared libraries' .la files before wrapping up the packages
 rm %{buildroot}%{_libdir}/*.la
 
+# Fix python scripts
+%if 0%{?fedora} || 0%{?rhel} >= 8
+pathfix.py -pni "%{__python3} %{py3_shbang_opts}" %{buildroot}%{_bindir}/nxdialog
+%else
+pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialog
+%endif
 
 %ldconfig_scriptlets
 %ldconfig_scriptlets -n libNX_X11
@@ -422,6 +429,7 @@ rm %{buildroot}%{_libdir}/*.la
 %dir %{_sysconfdir}/nxagent
 %config(noreplace) %{_sysconfdir}/nxagent/keystrokes.cfg
 %{_bindir}/nxagent
+%{_bindir}/nxdialog
 %dir %{_libdir}/nx
 %dir %{_libdir}/nx/bin
 %{_libdir}/nx/bin/nxagent
@@ -432,6 +440,7 @@ rm %{buildroot}%{_libdir}/*.la
 %{_datadir}/nx/VERSION.nxagent
 %{_datadir}/pixmaps/nxagent.xpm
 %{_mandir}/man1/nxagent.1*
+%{_mandir}/man1/nxdialog.1*
 
 %files -n nxproxy
 %{_bindir}/nxproxy
@@ -443,6 +452,9 @@ rm %{buildroot}%{_libdir}/*.la
 
 
 %changelog
+* Sun Apr 28 2019 Orion Poplawski <orion@nwra.com> - 3.5.99.20-1
+- Update to 3.5.99.20
+
 * Fri Feb 01 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.17-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
