@@ -10,8 +10,8 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.20
-Release:        2%{?dist}
+Version:        3.5.99.21
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -421,7 +421,6 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 %{_includedir}/nx-X11/extensions/xfixesproto.h
 %{_includedir}/nx-X11/extensions/xfixeswire.h
 %{_includedir}/nx-X11/extensions/xtestconst.h
-%{_includedir}/nx-X11/extensions/xtestext1.h
 %{_includedir}/nx-X11/extensions/xteststr.h
 
 %files -n nxagent
@@ -452,6 +451,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Thu Aug 15 2019 Orion Poplawski <orion@nwra.com> - 3.5.99.21-1
+- Update to 3.5.99.21
+
 * Thu Jul 25 2019 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.20-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
