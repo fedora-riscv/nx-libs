@@ -11,7 +11,7 @@
 
 Name:           nx-libs
 Version:        3.5.99.21
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -33,7 +33,11 @@ BuildRequires:  libXcomposite-devel
 BuildRequires:  libXdamage-devel
 BuildRequires:  libXdmcp-devel
 BuildRequires:  libXfixes-devel
+%if 0%{?fedora} || 0%{?rhel} >= 8
+BuildRequires:  libXfont2-devel
+%else
 BuildRequires:  libXfont-devel
+%endif
 BuildRequires:  libXinerama-devel
 BuildRequires:  libXpm-devel
 BuildRequires:  libXrandr-devel
@@ -451,6 +455,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Thu Aug 15 2019 Orion Poplawski <orion@nwra.com> - 3.5.99.21-2
+- BR libXfont2 on Fedora and RHEL 8+
+
 * Thu Aug 15 2019 Orion Poplawski <orion@nwra.com> - 3.5.99.21-1
 - Update to 3.5.99.21
 
