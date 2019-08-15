@@ -193,7 +193,7 @@ for the nx_X11 wire protocol.
 %package -n nxagent
 Summary:        NX Agent
 # For /usr/share/X11/xkb
-%if 0%{?fedora}
+%if 0%{?fedora} || 0%{?rhel} >= 8
 Recommends:     xkeyboard-config
 %else
 Requires:       xkeyboard-config
