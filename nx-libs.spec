@@ -10,8 +10,8 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.21
-Release:        2%{?dist}
+Version:        3.5.99.22
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -455,6 +455,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Mon Dec 16 2019 Orion Poplawski <orion@nwra.com> - 3.5.99.22-1
+- Update to 3.5.99.22
+
 * Thu Aug 15 2019 Orion Poplawski <orion@nwra.com> - 3.5.99.21-2
 - BR libXfont2 on Fedora and RHEL 8+
 
