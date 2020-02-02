@@ -441,7 +441,6 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 %dir %{_datadir}/nx
 %{_datadir}/nx/fonts
 %{_datadir}/nx/VERSION.nxagent
-%{_datadir}/pixmaps/nxagent.xpm
 %{_mandir}/man1/nxagent.1*
 %{_mandir}/man1/nxdialog.1*
 
