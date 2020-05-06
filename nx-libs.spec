@@ -10,7 +10,7 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.22
+Version:        3.5.99.23
 Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
@@ -441,7 +441,6 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 %dir %{_datadir}/nx
 %{_datadir}/nx/fonts
 %{_datadir}/nx/VERSION.nxagent
-%{_datadir}/pixmaps/nxagent.xpm
 %{_mandir}/man1/nxagent.1*
 %{_mandir}/man1/nxdialog.1*
 
@@ -455,6 +454,12 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Sat Feb 01 2020 Orion Poplawski <orion@nwra.com> - 3.5.99.23-1
+- Update to 3.5.99.23
+
+* Wed Jan 29 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.22-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
+
 * Mon Dec 16 2019 Orion Poplawski <orion@nwra.com> - 3.5.99.22-1
 - Update to 3.5.99.22
 
