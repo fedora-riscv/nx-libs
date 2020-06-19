@@ -10,7 +10,7 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.23
+Version:        3.5.99.24
 Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
@@ -377,8 +377,6 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 %{_includedir}/nx-X11/Sunkeysym.h
 %{_includedir}/nx-X11/X.h
 %{_includedir}/nx-X11/XF86keysym.h
-%{_includedir}/nx-X11/XWDFile.h
-%{_includedir}/nx-X11/Xalloca.h
 %{_includedir}/nx-X11/Xarch.h
 %{_includedir}/nx-X11/Xatom.h
 %{_includedir}/nx-X11/Xdefs.h
@@ -413,7 +411,6 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 %{_includedir}/nx-X11/extensions/renderproto.h
 %{_includedir}/nx-X11/extensions/saver.h
 %{_includedir}/nx-X11/extensions/saverproto.h
-%{_includedir}/nx-X11/extensions/scrnsaver.h
 %{_includedir}/nx-X11/extensions/security.h
 %{_includedir}/nx-X11/extensions/securstr.h
 %{_includedir}/nx-X11/extensions/shapeconst.h
@@ -454,6 +451,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Fri Jun 19 2020 Orion Poplawski <orion@nwra.com> - 3.5.99.24-1
+- Update to 3.5.99.24
+
 * Sat Feb 01 2020 Orion Poplawski <orion@nwra.com> - 3.5.99.23-1
 - Update to 3.5.99.23
 
