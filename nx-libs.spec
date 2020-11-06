@@ -10,8 +10,8 @@
 %endif
 
 Name:           nx-libs
-Version:        3.5.99.24
-Release:        2%{?dist}
+Version:        3.5.99.25
+Release:        1%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -239,6 +239,17 @@ Provides:       nx%{?_isa} = %{version}-%{release}
 This package provides the NX proxy (client) binary.
 
 
+%package -n nxdialog
+Summary:        NX Dialog
+
+%description -n nxdialog
+NX is a software suite which implements very efficient compression of
+the X11 protocol. This increases performance when using X
+pplications over a network, especially a slow one.
+
+This package provides the nxdialog helper script.
+
+
 %prep
 %setup -q
 # Install into /usr
@@ -429,7 +440,6 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 %dir %{_sysconfdir}/nxagent
 %config(noreplace) %{_sysconfdir}/nxagent/keystrokes.cfg
 %{_bindir}/nxagent
-%{_bindir}/nxdialog
 %dir %{_libdir}/nx
 %dir %{_libdir}/nx/bin
 %{_libdir}/nx/bin/nxagent
@@ -439,7 +449,6 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 %{_datadir}/nx/fonts
 %{_datadir}/nx/VERSION.nxagent
 %{_mandir}/man1/nxagent.1*
-%{_mandir}/man1/nxdialog.1*
 
 %files -n nxproxy
 %{_bindir}/nxproxy
@@ -449,8 +458,17 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 %{_datadir}/nx/VERSION.nxproxy
 %{_mandir}/man1/nxproxy.1*
 
+%files -n nxdialog
+%doc nxdialog/README.md
+%{_bindir}/nxdialog
+%{_mandir}/man1/nxdialog.1*
+
 
 %changelog
+* Fri Nov 06 2020 Orion Poplawski <orion@nwra.com> - 3.5.99.25-1
+- Update to 3.5.99.25
+- Split nxdialog into a separate package
+
 * Tue Jul 28 2020 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.24-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_33_Mass_Rebuild
 
