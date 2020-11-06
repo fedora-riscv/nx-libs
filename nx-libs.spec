@@ -11,12 +11,14 @@
 
 Name:           nx-libs
 Version:        3.5.99.25
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
 URL:            https://github.com/ArcticaProject/nx-libs
 Source0:        https://github.com/ArcticaProject/nx-libs/archive/%{version}/%{name}-%{version}.tar.gz
+# Upstream commit 5ca9a6b1e0f51b3ff65d1b5d8010ec5a71432078
+Patch0:         nx-libs-FreeFontNames.patch
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -251,7 +253,7 @@ This package provides the nxdialog helper script.
 
 
 %prep
-%setup -q
+%autosetup -p1
 # Install into /usr
 sed -i -e 's,/usr/local,/usr,' nx-X11/config/cf/site.def
 # Fix FSF address
@@ -465,6 +467,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Fri Nov 06 2020 Orion Poplawski <orion@nwra.com> - 3.5.99.25-2
+- Add upstream commit to fix typo/build failure
+
 * Fri Nov 06 2020 Orion Poplawski <orion@nwra.com> - 3.5.99.25-1
 - Update to 3.5.99.25
 - Split nxdialog into a separate package
