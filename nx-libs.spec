@@ -20,6 +20,7 @@ Source0:        https://github.com/ArcticaProject/nx-libs/archive/%{version}/%{n
 # Upstream commit 5ca9a6b1e0f51b3ff65d1b5d8010ec5a71432078
 Patch0:         nx-libs-FreeFontNames.patch
 
+BuildRequires: make
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  libtool
