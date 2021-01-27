@@ -11,7 +11,7 @@
 
 Name:           nx-libs
 Version:        3.5.99.25
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -19,6 +19,9 @@ URL:            https://github.com/ArcticaProject/nx-libs
 Source0:        https://github.com/ArcticaProject/nx-libs/archive/%{version}/%{name}-%{version}.tar.gz
 # Upstream commit 5ca9a6b1e0f51b3ff65d1b5d8010ec5a71432078
 Patch0:         nx-libs-FreeFontNames.patch
+# Upstream commit ad275d50720fbbaf65bc0668eed0297df5d27cad
+# Disable accidental debug logging
+Patch1:         nx-libs-nodebuglog.patch
 
 BuildRequires: make
 BuildRequires:  autoconf
@@ -468,6 +471,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Tue Jan 26 2021 Orion Poplawski <orion@nwra.com> - 3.5.99.25-4
+- Add upstream patch to quiet logging
+
 * Tue Jan 26 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.25-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
