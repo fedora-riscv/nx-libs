@@ -11,12 +11,14 @@
 
 Name:           nx-libs
 Version:        3.5.99.26
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
 URL:            https://github.com/ArcticaProject/nx-libs
 Source0:        https://github.com/ArcticaProject/nx-libs/archive/%{version}/%{name}-%{version}.tar.gz
+# Fix obsolete ar option usage
+Patch0:         nx-libs-ar.patch
 
 BuildRequires: make
 BuildRequires:  autoconf
@@ -466,6 +468,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Wed Aug 18 2021 Orion Poplawski <orion@nwra.com> - 3.5.99.26-3
+- Fix obsolete ar option usage (FTBFS bz#1987735)
+
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.26-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 

@@ -1,0 +1,15 @@
+diff -up nx-libs-3.5.99.26/nx-X11/config/cf/Imake.tmpl.ar nx-libs-3.5.99.26/nx-X11/config/cf/Imake.tmpl
+--- nx-libs-3.5.99.26/nx-X11/config/cf/Imake.tmpl.ar	2021-02-04 06:34:56.000000000 -0700
++++ nx-libs-3.5.99.26/nx-X11/config/cf/Imake.tmpl	2021-08-18 20:44:55.956856621 -0600
+@@ -1015,11 +1015,7 @@ TCLIBDIR = TclLibDir
+ #define ArCmdBase ar
+ #endif
+ #ifndef ArCmd
+-#if HasLargeTmp || SystemV4
+ #define ArCmd ArCmdBase cq
+-#else
+-#define ArCmd ArCmdBase clq
+-#endif
+ #endif
+ #ifndef ArAddCmd
+ #if HasLargeTmp || SystemV4
