@@ -11,7 +11,7 @@
 
 Name:           nx-libs
 Version:        3.5.99.26
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -468,6 +468,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Thu Jan 20 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.26-4
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_36_Mass_Rebuild
+
 * Wed Aug 18 2021 Orion Poplawski <orion@nwra.com> - 3.5.99.26-3
 - Fix obsolete ar option usage (FTBFS bz#1987735)
 
