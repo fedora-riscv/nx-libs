@@ -11,7 +11,7 @@
 
 Name:           nx-libs
 Version:        3.5.99.26
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -206,7 +206,9 @@ Recommends:     xkeyboard-config
 Requires:       xkeyboard-config
 %endif
 # For /usr/share/X11/fonts
+%if 0%{?fedora} || ( 0%{?rhel} && 0%{?rhel} <= 8 )
 Requires:       xorg-x11-font-utils
+%endif
 Obsoletes:      nx < 3.5.0-19
 Provides:       nx = %{version}-%{release}
 Provides:       nx%{?_isa} = %{version}-%{release}
@@ -468,6 +470,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Mon Jul 25 2022 Orion Poplawski <orion@nwra.com> - 3.5.99.26-6
+- Drop xorg-x11-font-utils requirement on EL9+ (bz#2104335)
+
 * Fri Jul 22 2022 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.26-5
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
 
