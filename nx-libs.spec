@@ -11,7 +11,7 @@
 
 Name:           nx-libs
 Version:        3.5.99.26
-Release:        7%{?dist}
+Release:        7.rv64%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
@@ -19,6 +19,7 @@ URL:            https://github.com/ArcticaProject/nx-libs
 Source0:        https://github.com/ArcticaProject/nx-libs/archive/%{version}/%{name}-%{version}.tar.gz
 # Fix obsolete ar option usage
 Patch0:         nx-libs-ar.patch
+Patch1:         add-riscv64-support.patch
 
 BuildRequires: make
 BuildRequires:  autoconf
@@ -470,6 +471,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Wed Oct 19 2023 Songsong Zhang <U2FsdGVkX1@gmail.com> - 3.5.99.26-7.rv64
+- Add riscv64 support
+
 * Thu Jan 19 2023 Fedora Release Engineering <releng@fedoraproject.org> - 3.5.99.26-7
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_38_Mass_Rebuild
 
