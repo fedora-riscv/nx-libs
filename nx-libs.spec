@@ -11,12 +11,14 @@
 
 Name:           nx-libs
 Version:        3.5.99.27
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        NX X11 protocol compression libraries
 
 License:        GPLv2+
 URL:            https://github.com/ArcticaProject/nx-libs
 Source0:        https://github.com/ArcticaProject/nx-libs/archive/%{version}/%{name}-%{version}.tar.gz
+
+Patch0:         add-riscv64-support.patch
 
 BuildRequires:  autoconf
 BuildRequires:  automake
@@ -482,6 +484,9 @@ pathfix.py -pni "%{__python2} %{py2_shbang_opts}" %{buildroot}%{_bindir}/nxdialo
 
 
 %changelog
+* Fri Oct 06 2023 Songsong Zhang <U2FsdGVkX1@gmail.com> - 3.5.99.27-2
+- Add riscv64 support
+
 * Fri Jul 21 2023 Orion Poplawski <orion@nwra.com> - 3.5.99.27-1
 - Update to 3.5.99.27
 - Switch from pathfix.py to %%py3_shebang_fix
